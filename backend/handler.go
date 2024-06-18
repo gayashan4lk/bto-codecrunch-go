@@ -35,7 +35,7 @@ func GetExpenseEndpoint(response http.ResponseWriter, request *http.Request) {
 	var expense Expense
 	collection := client.Database("expenses").Collection("expense")
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
-	err := collection.FindOne(ctx, Expense{ID: id}).Decode(&expense)
+	err := collection.FindOne(ctx, bson.M{"_id": id}).Decode(&expense)
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{"message": "` + err.Error() + `"}`))
