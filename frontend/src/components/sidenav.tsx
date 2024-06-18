@@ -9,7 +9,7 @@ import { AppLogo } from './AppLogo'
 
 const links = [
 	{ name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-	// { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
+	{ name: 'Add Expense', href: '/dashboard/add-expense', icon: DocumentDuplicateIcon },
 	// { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ]
 
