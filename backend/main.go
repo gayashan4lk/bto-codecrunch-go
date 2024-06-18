@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -40,6 +41,11 @@ func main() {
 	router.HandleFunc("/expenses/{id}", UpdateExpenseEndpoint).Methods("PUT")
 	router.HandleFunc("/expenses/{id}", DeleteExpenseEndpoint).Methods("DELETE")
 
-	log.Println("Server starting on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Default to port 8080 if not set
+	}
+
+	log.Printf("Server starting on port %s...", port)
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
