@@ -1,7 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
 import Link from 'next/link'
-import { TestForm } from '../components/TestForm'
 import { AppLogo } from '../components/AppLogo'
 
 export default function Home() {
