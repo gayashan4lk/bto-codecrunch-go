@@ -75,11 +75,18 @@ func UpdateExpenseEndpoint(response http.ResponseWriter, request *http.Request) 
 	response.Header().Set("content-type", "application/json")
 	params := mux.Vars(request)
 	id, _ := primitive.ObjectIDFromHex(params["id"])
-	var expense Expense
-	_ = json.NewDecoder(request.Body).Decode(&expense)
+	var updateExpense map[string]interface{}
+	_ = json.NewDecoder(request.Body).Decode(&updateExpense)
+
+	// Remove the _id field if it's present in the updateExpense
+	delete(updateExpense, "_id")
+
 	collection := client.Database("expenses").Collection("expense")
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-	result, err := collection.ReplaceOne(ctx, bson.M{"_id": id}, expense)
+
+	updateFields := bson.M{"$set": updateExpense}
+
+	result, err := collection.UpdateOne(ctx, bson.M{"_id": id}, updateFields)
 	if err != nil {
 		response.WriteHeader(http.StatusInternalServerError)
 		response.Write([]byte(`{"message": "` + err.Error() + `"}`))
