@@ -2,7 +2,7 @@ name: Build Go app and push to Azure
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feat/backend-sample-build ]
   # pull_request:
   #   branches: [ master ]
 
