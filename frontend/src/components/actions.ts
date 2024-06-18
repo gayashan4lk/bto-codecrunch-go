@@ -5,8 +5,10 @@ export async function fetchExpenses() {
 	try {
 		const res = await fetch(`${process.env.API_BASEURL}/expenses`, { method: 'get' })
 		const expenses = await res.json()
-		console.log(expenses)
-		if (!expenses) return []
+		console.log('expenses', expenses)
+		if (!Array.isArray(expenses)) {
+			throw new Error('Expected an array but got something else')
+		}
 		return expenses
 	} catch (error) {
 		console.error('failed to fetch:', error)
