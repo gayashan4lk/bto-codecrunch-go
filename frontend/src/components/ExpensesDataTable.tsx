@@ -1,6 +1,16 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 export function ExpensesDataTable({ expenses }: any) {
+	const [items, setItems] = useState([])
+
+	useEffect(() => {
+		if (expenses) {
+			setItems(expenses)
+		}
+	}, [])
+
 	return (
 		<div className="overflow-x-auto">
 			<table className="table table-zebra">
@@ -15,7 +25,7 @@ export function ExpensesDataTable({ expenses }: any) {
 					</tr>
 				</thead>
 				<tbody>
-					{expenses.map((item: any) => (
+					{items.map((item: any) => (
 						<tr key={item._id}>
 							<td>{item.date}</td>
 							<td>{item.payment_type}</td>
