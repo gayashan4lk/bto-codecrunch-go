@@ -2,7 +2,7 @@ name: Go deployment
 
 on:
   push:
-    branches: [ "pipelines" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
