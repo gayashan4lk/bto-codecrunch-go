@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { ExpensesDataTable } from '@/components/ExpensesDataTable'
 
 export default async function Page() {
-	const res = await fetch(`${process.env.API_BASEURL}/expenses`)
+	const res = await fetch(`${process.env.API_BASEURL}/expenses`, { next: { revalidate: 10 } })
 	const expenses = await res.json()
 
 	return (
