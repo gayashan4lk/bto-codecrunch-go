@@ -17,6 +17,17 @@ jobs:
       with:
         # Change your go version as needed
         go-version: 1.20
+    
+    - name: Print Go version
+      run: go version
+    
+    - name: Print Go Environment
+      run: go env
+  
+    - name: Install Dependencies
+      run: |
+        cd backend
+        go mod tidy
 
     - name: Build
       run: cd backend && go build -o ../build/go-app.exe -v
