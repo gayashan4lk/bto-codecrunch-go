@@ -11,6 +11,10 @@ export function ExpensesDataTable({ expenses }: any) {
 		}
 	}, [])
 
+	if (!Array.isArray(items)) {
+		return <div>No data</div>
+	}
+
 	return (
 		<div className="overflow-x-auto">
 			<table className="table table-zebra">
