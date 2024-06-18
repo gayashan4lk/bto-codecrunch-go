@@ -17,15 +17,16 @@ export async function ExpensesList() {
 					</tr>
 				</thead>
 				<tbody>
-					{expenses.map((item: any) => (
-						<tr key={item._id}>
-							<td>{item.date}</td>
-							<td>{item.payment_type}</td>
-							<td>{item.detail}</td>
-							<td>{item.is_paid ? item.payment : ''}</td>
-							<td>{item.is_paid ? '' : item.payment}</td>
-						</tr>
-					))}
+					{Array.isArray(expenses) &&
+						expenses.map((item: any) => (
+							<tr key={item._id}>
+								<td>{item.date}</td>
+								<td>{item.payment_type}</td>
+								<td>{item.detail}</td>
+								<td>{item.is_paid ? item.payment : ''}</td>
+								<td>{item.is_paid ? '' : item.payment}</td>
+							</tr>
+						))}
 				</tbody>
 			</table>
 		</div>
