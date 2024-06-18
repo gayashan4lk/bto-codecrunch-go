@@ -19,7 +19,7 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: go build -v ./...
+      run: cd backend && go build -o ../build/go-app.exe -v
 
     - name: Upload artifact for deployment jobs
       uses: actions/upload-artifact@v2
